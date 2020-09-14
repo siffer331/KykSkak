@@ -17,7 +17,7 @@ func _load_rules() -> void:
 	for rule in rules:
 		var node: RuleEdit = load("res://Rule.tscn").instance()
 		node.initialize(rule)
-		$Margin/Scroll/List.add_child_below_node(node, $Margin/Scroll/List)
+		$Margin/Scroll/List.add_child(node)
 		next_id = max(next_id, rule.id + 1)
 
 
@@ -27,5 +27,11 @@ func _save_rules() -> void:
 	file.store_line(to_json(rules))
 
 
-func _on_NewRule_pressed():
-	pass # Replace with function body.
+func _on_NewRule_pressed() -> void:
+	var rule := {id = next_id}
+	rules.append(rule)
+	next_id += 1
+	var node: RuleEdit = load("res://Rule.tscn").instance()
+	node.initialize(rule)
+	$Margin/Scroll/List.add_child(node)
+	#$Margin/Scroll/List.
