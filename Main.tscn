@@ -26,7 +26,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
+wait_time = 10.0
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -159,10 +159,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+visible = true
+margin_left = 384.804
+margin_top = 234.971
+margin_right = 584.804
+margin_bottom = 304.971
+window_title = "Bekræft venligst..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Text" type="Label" parent="ConfirmationDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 192.0
+margin_bottom = 34.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="Margin/DragSplit/Rules/Margin/Scroll/List/NewRule" to="Margin/DragSplit/Rules" method="_on_NewRule_pressed"]
