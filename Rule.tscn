@@ -1,30 +1,119 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Rule.gd" type="Script" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.109804, 0.109804, 0.121569, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.223529, 0.215686, 0.286275, 1 )
 
-[node name="Rule" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -924.0
-margin_bottom = -560.0
-rect_min_size = Vector2( 150, 40 )
-size_flags_horizontal = 3
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.109804, 0.109804, 0.121569, 1 )
+border_width_top = 20
+border_color = Color( 0.341176, 0.341176, 0.356863, 1 )
+expand_margin_top = 20.0
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.180392, 0.172549, 0.243137, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.223529, 0.215686, 0.286275, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.180392, 0.172549, 0.243137, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.223529, 0.215686, 0.286275, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.290196, 0.282353, 0.352941, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.180392, 0.172549, 0.243137, 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.223529, 0.215686, 0.286275, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.223529, 0.215686, 0.286275, 1 )
+
+[node name="Rule" type="PanelContainer"]
+margin_right = 150.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 150, 34 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Margin" type="MarginContainer" parent="."]
+margin_right = 150.0
+margin_bottom = 36.0
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 3
+
+[node name="Split" type="HBoxContainer" parent="Margin"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 147.0
+margin_bottom = 33.0
+grow_horizontal = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Name" type="PanelContainer" parent="Margin/Split"]
+margin_right = 110.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 2 )
+
+[node name="Margin" type="MarginContainer" parent="Margin/Split/Name"]
+margin_right = 110.0
+margin_bottom = 30.0
+mouse_filter = 2
+size_flags_vertical = 13
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Margin/Split/Name/Margin"]
+margin_left = 5.0
+margin_top = 8.0
+margin_right = 105.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="TextureButton" parent="Margin/Split/Name"]
+margin_right = 110.0
+margin_bottom = 30.0
+button_mask = 3
+
+[node name="Popup" type="WindowDialog" parent="Margin/Split/Name/Settings"]
+margin_left = 200.0
+margin_top = 89.6415
+margin_right = 500.0
+margin_bottom = 239.642
+custom_styles/panel = SubResource( 3 )
+window_title = "Edit rule"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="Margin/Split/Name/Settings/Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 5
@@ -35,22 +124,56 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Split" type="HBoxContainer" parent="Margin"]
+[node name="Split" type="VBoxContainer" parent="Margin/Split/Name/Settings/Popup/Margin"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 145.0
-margin_bottom = 35.0
-grow_horizontal = 2
+margin_right = 295.0
+margin_bottom = 145.0
 
-[node name="LineEdit" type="LineEdit" parent="Margin/Split"]
-margin_right = 106.0
+[node name="TitleLabel" type="Label" parent="Margin/Split/Name/Settings/Popup/Margin/Split"]
+margin_right = 290.0
+margin_bottom = 14.0
+text = "Title"
+
+[node name="Title" type="LineEdit" parent="Margin/Split/Name/Settings/Popup/Margin/Split"]
+margin_top = 18.0
+margin_right = 290.0
+margin_bottom = 32.0
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+
+[node name="DescriptionLabel" type="Label" parent="Margin/Split/Name/Settings/Popup/Margin/Split"]
+margin_top = 36.0
+margin_right = 290.0
+margin_bottom = 50.0
+text = "Description"
+
+[node name="Description" type="TextEdit" parent="Margin/Split/Name/Settings/Popup/Margin/Split"]
+margin_top = 54.0
+margin_right = 290.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 0, 50 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+
+[node name="Remove" type="Control" parent="Margin/Split"]
+margin_left = 114.0
+margin_right = 144.0
 margin_bottom = 30.0
-size_flags_horizontal = 3
-custom_styles/normal = SubResource( 1 )
+rect_min_size = Vector2( 30, 30 )
 
-[node name="Button" type="Button" parent="Margin/Split"]
-margin_left = 110.0
-margin_right = 140.0
+[node name="Button" type="Button" parent="Margin/Split/Remove"]
+margin_right = 30.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 0 )
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
 text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Margin/Split/Name/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="popup_hide" from="Margin/Split/Name/Settings/Popup" to="." method="_on_Popup_popup_hide"]
+[connection signal="pressed" from="Margin/Split/Remove/Button" to="." method="_on_RemoveButton_pressed"]
