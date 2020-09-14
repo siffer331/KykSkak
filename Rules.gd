@@ -3,6 +3,8 @@ extends Control
 var rules := []
 var next_id := 0
 
+onready var list: VBoxContainer
+
 func _ready() -> void:
 	_load_rules()
 
@@ -34,4 +36,4 @@ func _on_NewRule_pressed() -> void:
 	var node: RuleEdit = load("res://Rule.tscn").instance()
 	node.initialize(rule)
 	$Margin/Scroll/List.add_child(node)
-	#$Margin/Scroll/List.
+	#$Margin/Scroll/List.move_child(node, )

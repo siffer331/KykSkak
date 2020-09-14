@@ -94,7 +94,7 @@ margin_top = 5.0
 margin_right = 95.0
 margin_bottom = 575.0
 
-[node name="Main" type="Control" parent="Margin/DragSplit/DragSplit"]
+[node name="Settings" type="Control" parent="Margin/DragSplit/DragSplit"]
 margin_left = 110.0
 margin_right = 794.0
 margin_bottom = 580.0
@@ -103,7 +103,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="Margin/DragSplit/DragSplit/Main"]
+[node name="Panel" type="Panel" parent="Margin/DragSplit/DragSplit/Settings"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 2 )
