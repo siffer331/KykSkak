@@ -163,7 +163,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="AcceptRule" type="ConfirmationDialog" parent="."]
 visible = true
 margin_left = 384.804
 margin_top = 234.971
@@ -174,7 +174,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text" type="Label" parent="ConfirmationDialog"]
+[node name="Text" type="Label" parent="AcceptRule"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 192.0
@@ -185,3 +185,4 @@ __meta__ = {
 }
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="Margin/DragSplit/Rules/Margin/Scroll/List/NewRule" to="Margin/DragSplit/Rules" method="_on_NewRule_pressed"]
+[connection signal="confirmed" from="AcceptRule" to="." method="_on_AcceptRule_confirmed"]
