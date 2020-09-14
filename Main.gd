@@ -13,7 +13,7 @@ func _on_Timer_timeout():
 	_new_rule()
 
 func _new_rule():
-	current_rule = {name = "regel navn"}#(midlertidig dictiornary. Regler skal komme fra get_rule funktionen i rules noden)rules.get_rule()
+	current_rule = rules.get_rule()
 	$AcceptRule/Text.text = "Vil du acceptere reglen:\n" + current_rule.name
 	$AcceptRule.popup()
 
