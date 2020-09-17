@@ -137,6 +137,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MatchSetting" type="HBoxContainer" parent="Margin/DragSplit/DragSplit/Settings/Margin/List"]
+margin_top = 522.0
+margin_right = 664.0
+margin_bottom = 542.0
+
+[node name="Start" type="Button" parent="Margin/DragSplit/DragSplit/Settings/Margin/List/MatchSetting"]
+margin_right = 41.0
+margin_bottom = 20.0
+hint_tooltip = "Start game"
+text = "Start"
+
+[node name="Stop" type="Button" parent="Margin/DragSplit/DragSplit/Settings/Margin/List/MatchSetting"]
+margin_left = 45.0
+margin_right = 85.0
+margin_bottom = 20.0
+hint_tooltip = "Stop spillet"
+text = "Stop"
+
+[node name="NewRule" type="Button" parent="Margin/DragSplit/DragSplit/Settings/Margin/List/MatchSetting"]
+margin_left = 89.0
+margin_right = 129.0
+margin_bottom = 20.0
+text = "New"
+
 [node name="Progress" type="ProgressBar" parent="Margin/DragSplit/DragSplit/Settings/Margin/List"]
 margin_top = 546.0
 margin_right = 664.0
@@ -169,18 +193,31 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Scroll" type="ScrollContainer" parent="Margin/DragSplit/Rules/Margin"]
+[node name="Split" type="VBoxContainer" parent="Margin/DragSplit/Rules/Margin"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 195.0
 margin_bottom = 575.0
 
-[node name="List" type="VBoxContainer" parent="Margin/DragSplit/Rules/Margin/Scroll"]
+[node name="Label" type="Label" parent="Margin/DragSplit/Rules/Margin/Split"]
+margin_right = 190.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/DragSplit/Rules/Margin/Split"]
+margin_top = 18.0
+margin_right = 190.0
+margin_bottom = 570.0
+size_flags_vertical = 3
+
+[node name="List" type="VBoxContainer" parent="Margin/DragSplit/Rules/Margin/Split/Scroll"]
 margin_right = 190.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 
-[node name="NewRule" type="Button" parent="Margin/DragSplit/Rules/Margin/Scroll/List"]
+[node name="NewRule" type="Button" parent="Margin/DragSplit/Rules/Margin/Split/Scroll/List"]
 margin_right = 190.0
 margin_bottom = 14.0
 custom_styles/normal = SubResource( 5 )
@@ -212,7 +249,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="pressed" from="Margin/DragSplit/Rules/Margin/Scroll/List/NewRule" to="Margin/DragSplit/Rules" method="_on_NewRule_pressed"]
+[connection signal="pressed" from="Margin/DragSplit/DragSplit/Settings/Margin/List/MatchSetting/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Margin/DragSplit/DragSplit/Settings/Margin/List/MatchSetting/Stop" to="." method="_on_Stop_pressed"]
+[connection signal="pressed" from="Margin/DragSplit/DragSplit/Settings/Margin/List/MatchSetting/NewRule" to="." method="_on_NewRule_pressed"]
+[connection signal="pressed" from="Margin/DragSplit/Rules/Margin/Split/Scroll/List/NewRule" to="Margin/DragSplit/Rules" method="_on_NewRule_pressed"]
 [connection signal="confirmed" from="AcceptRule" to="." method="_on_AcceptRule_confirmed"]
 [connection signal="custom_action" from="AcceptRule" to="." method="_on_AcceptRule_custom_action"]
 [connection signal="popup_hide" from="AcceptRule" to="." method="_on_AcceptRule_popup_hide"]

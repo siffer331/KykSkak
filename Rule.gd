@@ -31,6 +31,7 @@ func _set_in_game(val: bool):
 
 func _update_ui() -> void:
 	label.text = data.name
+	$Margin/Split/Name/Settings.hint_tooltip = data.description
 	if in_game:
 		label.modulate = in_game_color
 	else:
@@ -41,8 +42,9 @@ func _update_ui() -> void:
 
 
 func _on_Settings_pressed() -> void:
-	$Margin/Split/Name/Settings/Popup/Margin/Split/Title.text = data.name
-	$Margin/Split/Name/Settings/Popup/Margin/Split/Description.text = data.description
+	$Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Title.text = data.name
+	$Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Description.text = data.description
+	$Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Disable.pressed = data.disabled
 	$Margin/Split/Name/Settings/Popup.popup_centered()
 
 
@@ -52,8 +54,9 @@ func _on_RemoveButton_pressed() -> void:
 
 
 func _on_Popup_popup_hide() -> void:
-	data.name = $Margin/Split/Name/Settings/Popup/Margin/Split/Title.text
-	data.description = $Margin/Split/Name/Settings/Popup/Margin/Split/Description.text
+	data.name = $Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Title.text
+	data.description = $Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Description.text
+	data.disabled = $Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Disable.pressed
 	$Margin/Split/Name/Margin/Label.text = data.name
 	rect_size.y = 0
 	_update_ui()

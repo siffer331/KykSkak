@@ -2,8 +2,10 @@ extends Control
 
 var rules := {}
 var next_id := 0
+var game := []
+var usable := 0
 
-onready var list: VBoxContainer = $Margin/Scroll/List
+onready var list: VBoxContainer = $Margin/Split/Scroll/List
 
 func _ready() -> void:
 	randomize()
@@ -11,25 +13,29 @@ func _ready() -> void:
 
 
 func start_game() -> void:
+	game = []
 	for id in rules:
-		$Margin/Scroll/List.get_node(id).in_game = false
+		list.get_node(id).in_game = false
 
 
 func get_rule() -> Dictionary:
 	var possible := []
 	for id in rules:
-		if not rules[id].disabled:
+		if not rules[id].disabled and not id in game:
 			possible.append(id)
+	if len(possible) == 0:
+		return {}
 	return rules[possible[randi()%len(possible)]]
 
 
 func disable_rule(id: String) -> void:
 	rules[id].disabled = true
-	$Margin/Scroll/List.get_node(id).disable(true)
+	list.get_node(id).disable(true)
 
 
 func put_rule_in_game(id: String) -> void:
-	$Margin/Scroll/List.get_node(id).in_game = true
+	game.append(id)
+	list.get_node(id).in_game = true
 
 
 func _load_rules() -> void:

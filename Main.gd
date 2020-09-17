@@ -10,9 +10,7 @@ var current_rule : Dictionary
 
 func _ready():
 	randomize()
-	_new_rule()
 	$AcceptRule.add_button("Wait").connect("pressed", self, "_on_Wait_pressed")
-	$AcceptRule.get_close_button()
 
 
 func _process(delta: float) -> void:
@@ -24,9 +22,10 @@ func _on_Timer_timeout():
 
 func _new_rule():
 	current_rule = rules.get_rule()
-	$AcceptRule/Text.text = "Vil du acceptere reglen:\n" + current_rule.name
-	$AcceptRule/Text.hint_tooltip = current_rule.description
-	$AcceptRule.popup()
+	if current_rule:
+		$AcceptRule/Text.text = "Vil du acceptere reglen:\n" + current_rule.name
+		$AcceptRule/Text.hint_tooltip = current_rule.description
+		$AcceptRule.popup()
 
 
 func _wait_for_rule() -> void:
@@ -53,3 +52,19 @@ func _on_Wait_pressed() -> void:
 	current_rule = {}
 	_wait_for_rule()
 	$AcceptRule.hide()
+
+
+func _on_Start_pressed():
+	rules.start_game()
+	in_play.reset()
+	_new_rule()
+
+
+func _on_Stop_pressed():
+	$Timer.stop()
+
+
+func _on_NewRule_pressed():
+	if $Timer.time_left > 0:
+		$Timer.stop()
+		_new_rule()
