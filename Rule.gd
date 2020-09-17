@@ -10,6 +10,7 @@ export var in_game_color: Color
 
 var in_game := false setget _set_in_game
 var data : Dictionary
+var properties = {name = "text", description = "text", disabled = "pressed", avaliable = "value"}
 
 var label: Label
 
@@ -42,9 +43,8 @@ func _update_ui() -> void:
 
 
 func _on_Settings_pressed() -> void:
-	$Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Title.text = data.name
-	$Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Description.text = data.description
-	$Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Disable.pressed = data.disabled
+	for properti in properties:
+		$Margin/Split/Name/Settings/Popup/Margin/Scroll/Split.get_node(properti).set(properties[properti], data[properti])
 	$Margin/Split/Name/Settings/Popup.popup_centered()
 
 
@@ -54,9 +54,8 @@ func _on_RemoveButton_pressed() -> void:
 
 
 func _on_Popup_popup_hide() -> void:
-	data.name = $Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Title.text
-	data.description = $Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Description.text
-	data.disabled = $Margin/Split/Name/Settings/Popup/Margin/Scroll/Split/Disable.pressed
+	for properti in properties:
+		data[properti] = $Margin/Split/Name/Settings/Popup/Margin/Scroll/Split.get_node(properti).get(properties[properti])
 	$Margin/Split/Name/Margin/Label.text = data.name
 	rect_size.y = 0
 	_update_ui()
