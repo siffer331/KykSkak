@@ -4,10 +4,17 @@ extends PanelContainer
 signal updated_data(data)
 signal removed(id)
 
-var in_game := false
+export var base_color: Color
+export var disable_color: Color
+export var in_game_color: Color
+
+var in_game := false setget _set_in_game
 var data : Dictionary
 
+var label: Label
+
 func initialize(data: Dictionary) -> void:
+	label = $Margin/Split/Name/Margin/Label
 	name = str(data.id)
 	self.data = data
 	_update_ui()
@@ -17,8 +24,20 @@ func disable(val: bool) -> void:
 	data.disabled = val
 
 
+func _set_in_game(val: bool):
+	in_game = val
+	_update_ui()
+
+
 func _update_ui() -> void:
-	$Margin/Split/Name/Margin/Label.text = data.name
+	label.text = data.name
+	if in_game:
+		label.modulate = in_game_color
+	else:
+		if data.disabled:
+			label.modulate = disable_color
+		else:
+			label.modulate = base_color
 
 
 func _on_Settings_pressed() -> void:

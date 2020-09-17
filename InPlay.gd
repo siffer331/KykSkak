@@ -3,15 +3,17 @@ extends Control
 var rules := []
 
 
-func add(rule: String, id: int) -> void:
+func add(rule: String, description: String, id: String) -> void:
 	rules.append(id)
 	var label := Label.new()
-	label.name = str(id)
+	label.name = id
+	label.text = rule
 	label.autowrap = true
-	$List.add_child(label)
+	label.hint_tooltip = description
+	$Margin/List.add_child(label)
 
 
-func remove(id: int) -> void:
+func remove(id: String) -> void:
 	if id in rules:
 		rules.remove(rules.find(id))
-		get_node("List/"+str(id)).queue_free()
+		get_node("List/"+id).queue_free()

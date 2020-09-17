@@ -1,1 +1,1 @@
-{"0":{"description":"Brikker kan angribe uden at bevæge sig.","disabled":false,"id":0,"name":"Pistoler"}}
+{"0":{"description":"Brikker kan angribe uden at bevæge sig.","disabled":true,"id":"0","name":"Pistoler"},"1":{"description":"Ryk alle brikker i række D til det samme tal i række E og omvendt.","disabled":false,"id":"1","name":"Byt D og E"}}

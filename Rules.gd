@@ -10,6 +10,11 @@ func _ready() -> void:
 	_load_rules()
 
 
+func start_game() -> void:
+	for id in rules:
+		$Margin/Scroll/List.get_node(id).in_game = false
+
+
 func get_rule() -> Dictionary:
 	var possible := []
 	for id in rules:
@@ -21,6 +26,10 @@ func get_rule() -> Dictionary:
 func disable_rule(id: String) -> void:
 	rules[id].disabled = true
 	$Margin/Scroll/List.get_node(id).disable(true)
+
+
+func put_rule_in_game(id: String) -> void:
+	$Margin/Scroll/List.get_node(id).in_game = true
 
 
 func _load_rules() -> void:
@@ -62,6 +71,6 @@ func _on_Rule_updated_data(data: Dictionary) -> void:
 	_save_rules()
 
 
-func _on_Rule_removed(id: int) -> void:
+func _on_Rule_removed(id: String) -> void:
 	rules.erase(id)
 	_save_rules()

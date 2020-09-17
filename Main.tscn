@@ -30,6 +30,7 @@ __meta__ = {
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
+one_shot = true
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -115,6 +116,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Margin" type="MarginContainer" parent="Margin/DragSplit/DragSplit/Settings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="VBoxContainer" parent="Margin/DragSplit/DragSplit/Settings/Margin"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 674.0
+margin_bottom = 570.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Progress" type="ProgressBar" parent="Margin/DragSplit/DragSplit/Settings/Margin/List"]
+margin_top = 546.0
+margin_right = 664.0
+margin_bottom = 560.0
+
 [node name="Rules" type="Control" parent="Margin/DragSplit"]
 margin_left = 804.0
 margin_right = 1004.0
@@ -164,12 +191,12 @@ __meta__ = {
 }
 
 [node name="AcceptRule" type="ConfirmationDialog" parent="."]
-visible = true
-margin_left = 384.804
-margin_top = 234.971
-margin_right = 584.804
-margin_bottom = 304.971
+margin_left = 397.755
+margin_top = 258.714
+margin_right = 597.755
+margin_bottom = 328.714
 window_title = "Bekræft venligst..."
+dialog_autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -179,6 +206,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 192.0
 margin_bottom = 34.0
+mouse_filter = 0
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -186,3 +214,5 @@ __meta__ = {
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="Margin/DragSplit/Rules/Margin/Scroll/List/NewRule" to="Margin/DragSplit/Rules" method="_on_NewRule_pressed"]
 [connection signal="confirmed" from="AcceptRule" to="." method="_on_AcceptRule_confirmed"]
+[connection signal="custom_action" from="AcceptRule" to="." method="_on_AcceptRule_custom_action"]
+[connection signal="popup_hide" from="AcceptRule" to="." method="_on_AcceptRule_popup_hide"]
