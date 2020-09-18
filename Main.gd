@@ -3,7 +3,7 @@ extends Control
 onready var in_play: Node = $Margin/DragSplit/DragSplit/InPlay
 onready var rules: Node = $Margin/DragSplit/Rules
 
-var timer_variation := 5
+var timer_variation := 15
 var timer_time := 60
 
 var current_rule : Dictionary
