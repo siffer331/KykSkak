@@ -4,7 +4,7 @@ onready var in_play: Node = $Margin/DragSplit/DragSplit/InPlay
 onready var rules: Node = $Margin/DragSplit/Rules
 
 var timer_variation := 5
-var timer_time := 10
+var timer_time := 60
 
 var current_rule : Dictionary
 
