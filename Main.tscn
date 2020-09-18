@@ -93,11 +93,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="List" type="VBoxContainer" parent="Margin/DragSplit/DragSplit/InPlay/Margin"]
+[node name="Scroll" type="ScrollContainer" parent="Margin/DragSplit/DragSplit/InPlay/Margin"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 95.0
 margin_bottom = 575.0
+
+[node name="List" type="VBoxContainer" parent="Margin/DragSplit/DragSplit/InPlay/Margin/Scroll"]
+margin_right = 90.0
+size_flags_horizontal = 3
+custom_constants/separation = 10
 
 [node name="Settings" type="Control" parent="Margin/DragSplit/DragSplit"]
 margin_left = 110.0
