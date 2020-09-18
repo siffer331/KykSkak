@@ -10,6 +10,7 @@ var current_rule : Dictionary
 
 func _ready():
 	randomize()
+	$AcceptRule.get_cancel().text = "Decline"
 	$AcceptRule.add_button("Wait").connect("pressed", self, "_on_Wait_pressed")
 
 

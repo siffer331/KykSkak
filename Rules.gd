@@ -1,6 +1,6 @@
 extends Control
 
-var default_rule := {id = str(next_id), name = "New rule", description = "New rule", disabled = false, avaliable = 0}
+var default_rule := {id = 0, name = "New rule", description = "New rule", disabled = false, avaliable = 0}
 
 var rules := {}
 var next_id := 0
@@ -80,6 +80,7 @@ func _set_usable(val: int) -> void:
 
 func _on_NewRule_pressed() -> void:
 	var rule := default_rule.duplicate()
+	rule.id = str(next_id)
 	rules[str(next_id)] = rule
 	next_id += 1
 	_place_rule(rule)
