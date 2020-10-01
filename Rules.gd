@@ -44,10 +44,10 @@ func put_rule_in_game(id: String) -> void:
 
 func _load_rules() -> void:
 	var file := File.new()
-	if not file.file_exists("res://rules.rl"):
-		return
-	
-	file.open("res://rules.rl",File.READ)
+	if OS.has_feature("standalone") and file.file_exists("user://rules.rls"):
+		file.open("user://rules.rls", File.READ)
+	else:
+		file.open("res://rules.rls", File.READ)
 	rules = parse_json(file.get_as_text())
 	for id in rules:
 		for key in default_rule:
@@ -59,7 +59,11 @@ func _load_rules() -> void:
 
 func _save_rules() -> void:
 	var file := File.new()
-	file.open("res://rules.rl",File.WRITE)
+	file.open("res://rules.rls", File.WRITE)
+	if not OS.has_feature("standalone"):
+		file.open("res://rules.rls", File.WRITE)
+	else:
+		file.open("user://rules.rls", File.WRITE)
 	file.store_line(to_json(rules))
 
 
