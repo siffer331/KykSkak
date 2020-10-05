@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "RuleEdit",
 "language": "GDScript",
 "path": "res://Rule.gd"
+}, {
+"base": "OptionButton",
+"class": "RuleList",
+"language": "GDScript",
+"path": "res://RuleList.gd"
 } ]
 _global_script_class_icons={
-"RuleEdit": ""
+"RuleEdit": "",
+"RuleList": ""
 }
 
 [application]
@@ -23,6 +29,10 @@ _global_script_class_icons={
 config/name="Chess"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Vals="*res://Vals.gd"
 
 [display]
 

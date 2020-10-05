@@ -1,6 +1,13 @@
 extends Control
 
-var default_rule := {id = str(next_id), name = "New rule", description = "New rule", disabled = false, avaliable = 0}
+var default_rule := {
+	id = str(next_id),
+	name = "New rule",
+	description = "New rule",
+	disabled = false,
+	avaliable = 0,
+	requires = ""
+}
 
 var rules := {}
 var next_id := 0
@@ -42,6 +49,12 @@ func put_rule_in_game(id: String) -> void:
 	list.get_node(id).in_game = true
 
 
+func update_vals():
+	Vals.names = {}
+	for id in rules:
+		Vals.names[id] = rules[id].name
+
+
 func _load_rules() -> void:
 	var file := File.new()
 	if not file.file_exists("res://rules.rl"):
@@ -55,6 +68,7 @@ func _load_rules() -> void:
 				rules[id][key] = default_rule[key]
 		_place_rule(rules[id])
 		next_id = max(next_id, int(id) + 1)
+	update_vals()
 
 
 func _save_rules() -> void:
@@ -89,6 +103,7 @@ func _on_Rule_updated_data(data: Dictionary) -> void:
 	self.usable += int(rules[data.id].disabled) - int(data.disabled)
 	rules[data.id] = data.duplicate()
 	_save_rules()
+	update_vals()
 
 
 func _on_Rule_removed(id: String) -> void:

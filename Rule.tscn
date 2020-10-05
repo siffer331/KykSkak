@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Rule.gd" type="Script" id=1]
+[ext_resource path="res://RuleList.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.109804, 0.109804, 0.121569, 1 )
@@ -152,7 +153,7 @@ margin_bottom = 32.0
 custom_styles/focus = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 
-[node name="DescriptionLabel" type="Label" parent="Margin/Split/Name/Settings/Popup/Margin/Scroll/Split"]
+[node name="Description" type="Label" parent="Margin/Split/Name/Settings/Popup/Margin/Scroll/Split"]
 margin_top = 36.0
 margin_right = 290.0
 margin_bottom = 50.0
@@ -167,7 +168,7 @@ custom_styles/focus = SubResource( 6 )
 custom_styles/normal = SubResource( 7 )
 wrap_enabled = true
 
-[node name="DisableLabel" type="Label" parent="Margin/Split/Name/Settings/Popup/Margin/Scroll/Split"]
+[node name="Disable" type="Label" parent="Margin/Split/Name/Settings/Popup/Margin/Scroll/Split"]
 margin_top = 108.0
 margin_right = 290.0
 margin_bottom = 122.0
@@ -181,7 +182,7 @@ margin_top = 126.0
 margin_right = 290.0
 margin_bottom = 166.0
 
-[node name="AvaliableLabel" type="Label" parent="Margin/Split/Name/Settings/Popup/Margin/Scroll/Split"]
+[node name="Avaliable" type="Label" parent="Margin/Split/Name/Settings/Popup/Margin/Scroll/Split"]
 margin_top = 170.0
 margin_right = 290.0
 margin_bottom = 184.0
@@ -194,6 +195,15 @@ margin_bottom = 212.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Requires" type="Label" parent="Margin/Split/Name/Settings/Popup/Margin/Scroll/Split"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="requires" type="OptionButton" parent="Margin/Split/Name/Settings/Popup/Margin/Scroll/Split"]
+margin_right = 29.0
+margin_bottom = 20.0
+script = ExtResource( 2 )
 
 [node name="Remove" type="Control" parent="Margin/Split"]
 margin_left = 114.0

@@ -10,7 +10,13 @@ export var in_game_color: Color
 
 var in_game := false setget _set_in_game
 var data : Dictionary
-var properties = {name = "text", description = "text", disabled = "pressed", avaliable = "value"}
+var properties = {
+	name = "text",
+	description = "text",
+	disabled = "pressed",
+	avaliable = "value",
+	requires = "selected_id"
+}
 
 var label: Label
 
