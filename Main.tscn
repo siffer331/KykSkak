@@ -201,29 +201,42 @@ __meta__ = {
 [node name="Split" type="VBoxContainer" parent="Margin/DragSplit/Rules/Margin"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 195.0
+margin_right = 196.0
 margin_bottom = 575.0
 
-[node name="Label" type="Label" parent="Margin/DragSplit/Rules/Margin/Split"]
-margin_right = 190.0
-margin_bottom = 14.0
+[node name="InfoSplit" type="HBoxContainer" parent="Margin/DragSplit/Rules/Margin/Split"]
+margin_right = 191.0
+margin_bottom = 20.0
+custom_constants/separation = 10
+
+[node name="Info" type="Label" parent="Margin/DragSplit/Rules/Margin/Split/InfoSplit"]
+margin_top = 3.0
+margin_right = 143.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 143, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Scroll" type="ScrollContainer" parent="Margin/DragSplit/Rules/Margin/Split"]
-margin_top = 18.0
+[node name="Sort" type="Button" parent="Margin/DragSplit/Rules/Margin/Split/InfoSplit"]
+margin_left = 153.0
 margin_right = 190.0
+margin_bottom = 20.0
+text = "Sort"
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/DragSplit/Rules/Margin/Split"]
+margin_top = 24.0
+margin_right = 191.0
 margin_bottom = 570.0
 size_flags_vertical = 3
 
 [node name="List" type="VBoxContainer" parent="Margin/DragSplit/Rules/Margin/Split/Scroll"]
-margin_right = 190.0
+margin_right = 191.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="NewRule" type="Button" parent="Margin/DragSplit/Rules/Margin/Split/Scroll/List"]
-margin_right = 190.0
+margin_right = 191.0
 margin_bottom = 14.0
 custom_styles/normal = SubResource( 5 )
 shortcut_in_tooltip = false
@@ -257,6 +270,7 @@ __meta__ = {
 [connection signal="pressed" from="Margin/DragSplit/DragSplit/Settings/Margin/List/MatchSetting/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Margin/DragSplit/DragSplit/Settings/Margin/List/MatchSetting/Stop" to="." method="_on_Stop_pressed"]
 [connection signal="pressed" from="Margin/DragSplit/DragSplit/Settings/Margin/List/MatchSetting/NewRule" to="." method="_on_NewRule_pressed"]
+[connection signal="pressed" from="Margin/DragSplit/Rules/Margin/Split/InfoSplit/Sort" to="Margin/DragSplit/Rules" method="_on_Sort_pressed"]
 [connection signal="pressed" from="Margin/DragSplit/Rules/Margin/Split/Scroll/List/NewRule" to="Margin/DragSplit/Rules" method="_on_NewRule_pressed"]
 [connection signal="confirmed" from="AcceptRule" to="." method="_on_AcceptRule_confirmed"]
 [connection signal="custom_action" from="AcceptRule" to="." method="_on_AcceptRule_custom_action"]

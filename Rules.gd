@@ -41,18 +41,38 @@ func get_rule() -> Dictionary:
 func disable_rule(id: String) -> void:
 	rules[id].disabled = true
 	list.get_node(id).disable(true)
+	update_rules()
 
 
 func put_rule_in_game(id: String) -> void:
-	self.usable -= 1 - int(rules[id].disabled)
 	game.append(id)
 	list.get_node(id).in_game = true
+	_update_usable()
 
 
-func update_vals():
-	Vals.names = {}
+func update_rules():
+	_update_vals()
+	_update_usable()
+
+
+func _update_vals() -> void:
+	var names := {}
 	for id in rules:
-		Vals.names[id] = rules[id].name
+		names[rules[id].name] = id
+	var keys = names.keys()
+	keys.sort()
+	var new_names := []
+	for rule_name in keys:
+		new_names.append([rule_name, names[rule_name]])
+	Vals.names = new_names
+
+
+func _update_usable() -> void:
+	var count = 0
+	for id in rules:
+		if not (id in game or rules[id].disabled):
+			count += 1
+	self.usable = count
 
 
 func _load_rules() -> void:
@@ -66,9 +86,9 @@ func _load_rules() -> void:
 		for key in default_rule:
 			if not key in rules[id]:
 				rules[id][key] = default_rule[key]
-		_place_rule(rules[id])
 		next_id = max(next_id, int(id) + 1)
-	update_vals()
+	_sort_rules()
+	update_rules()
 
 
 func _save_rules() -> void:
@@ -79,10 +99,10 @@ func _save_rules() -> void:
 	else:
 		file.open("user://rules.rls", File.WRITE)
 	file.store_line(to_json(rules))
+	update_rules()
 
 
 func _place_rule(rule: Dictionary) -> void:
-	self.usable += 1 - int(rule.disabled)
 	var node: RuleEdit = load("res://Rule.tscn").instance()
 	node.initialize(rule.duplicate())
 	list.add_child(node)
@@ -93,7 +113,21 @@ func _place_rule(rule: Dictionary) -> void:
 
 func _set_usable(val: int) -> void:
 	usable = val
-	$Margin/Split/Label.text = str(usable)+"/"+str(len(rules))
+	$Margin/Split/InfoSplit/Info.text = str(usable)+"/"+str(len(rules))
+
+
+func _sort_rules() -> void:
+	for child in $Margin/Split/Scroll/List.get_children():
+		if child.name != "NewRule":
+			child.name += "d"
+			child.queue_free()
+	var names := {}
+	for id in rules:
+		names[rules[id].name] = id
+	var keys = names.keys()
+	keys.sort()
+	for rule_name in keys:
+		_place_rule(rules[names[rule_name]])
 
 
 func _on_NewRule_pressed() -> void:
@@ -105,12 +139,14 @@ func _on_NewRule_pressed() -> void:
 
 
 func _on_Rule_updated_data(data: Dictionary) -> void:
-	self.usable += int(rules[data.id].disabled) - int(data.disabled)
 	rules[data.id] = data.duplicate()
 	_save_rules()
-	update_vals()
 
 
 func _on_Rule_removed(id: String) -> void:
 	rules.erase(id)
 	_save_rules()
+
+
+func _on_Sort_pressed() -> void:
+	_sort_rules()
