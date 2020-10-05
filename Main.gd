@@ -3,13 +3,14 @@ extends Control
 onready var in_play: Node = $Margin/DragSplit/DragSplit/InPlay
 onready var rules: Node = $Margin/DragSplit/Rules
 
-var timer_variation := 5
+var timer_variation := 15
 var timer_time := 60
 
 var current_rule : Dictionary
 
 func _ready():
 	randomize()
+	$AcceptRule.get_cancel().text = "Decline"
 	$AcceptRule.add_button("Wait").connect("pressed", self, "_on_Wait_pressed")
 
 

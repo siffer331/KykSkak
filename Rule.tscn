@@ -54,7 +54,7 @@ in_game_color = Color( 0.435294, 0.835294, 0.290196, 1 )
 
 [node name="Margin" type="MarginContainer" parent="."]
 margin_right = 150.0
-margin_bottom = 36.0
+margin_bottom = 34.0
 custom_constants/margin_right = 3
 custom_constants/margin_top = 3
 custom_constants/margin_left = 3
@@ -64,7 +64,7 @@ custom_constants/margin_bottom = 3
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 147.0
-margin_bottom = 33.0
+margin_bottom = 31.0
 grow_horizontal = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -72,13 +72,13 @@ __meta__ = {
 
 [node name="Name" type="PanelContainer" parent="Margin/Split"]
 margin_right = 110.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 custom_styles/panel = SubResource( 2 )
 
 [node name="Margin" type="MarginContainer" parent="Margin/Split/Name"]
 margin_right = 110.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 mouse_filter = 2
 size_flags_vertical = 13
 custom_constants/margin_right = 5
@@ -91,9 +91,9 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="Margin/Split/Name/Margin"]
 margin_left = 5.0
-margin_top = 8.0
+margin_top = 7.0
 margin_right = 105.0
-margin_bottom = 22.0
+margin_bottom = 21.0
 size_flags_horizontal = 3
 valign = 1
 autowrap = true
@@ -103,7 +103,7 @@ __meta__ = {
 
 [node name="Settings" type="TextureButton" parent="Margin/Split/Name"]
 margin_right = 110.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 button_mask = 3
 
 [node name="Popup" type="WindowDialog" parent="Margin/Split/Name/Settings"]
@@ -208,12 +208,7 @@ script = ExtResource( 2 )
 [node name="Remove" type="Control" parent="Margin/Split"]
 margin_left = 114.0
 margin_right = 144.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
-
-[node name="Button" type="Button" parent="Margin/Split/Remove"]
-margin_right = 30.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 30, 0 )
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 9 )
@@ -225,4 +220,4 @@ __meta__ = {
 }
 [connection signal="pressed" from="Margin/Split/Name/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="popup_hide" from="Margin/Split/Name/Settings/Popup" to="." method="_on_Popup_popup_hide"]
-[connection signal="pressed" from="Margin/Split/Remove/Button" to="." method="_on_RemoveButton_pressed"]
+[connection signal="pressed" from="Margin/Split/Button" to="." method="_on_RemoveButton_pressed"]
