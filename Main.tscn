@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Rules.gd" type="Script" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
 [ext_resource path="res://InPlay.gd" type="Script" id=3]
+[ext_resource path="res://mixkit-alarm-tone-996.wav" type="AudioStream" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.109804, 0.109804, 0.121569, 1 )
@@ -201,11 +202,11 @@ __meta__ = {
 [node name="Split" type="VBoxContainer" parent="Margin/DragSplit/Rules/Margin"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 196.0
+margin_right = 195.0
 margin_bottom = 575.0
 
 [node name="InfoSplit" type="HBoxContainer" parent="Margin/DragSplit/Rules/Margin/Split"]
-margin_right = 191.0
+margin_right = 190.0
 margin_bottom = 20.0
 custom_constants/separation = 10
 
@@ -226,17 +227,17 @@ text = "Sort"
 
 [node name="Scroll" type="ScrollContainer" parent="Margin/DragSplit/Rules/Margin/Split"]
 margin_top = 24.0
-margin_right = 191.0
+margin_right = 190.0
 margin_bottom = 570.0
 size_flags_vertical = 3
 
 [node name="List" type="VBoxContainer" parent="Margin/DragSplit/Rules/Margin/Split/Scroll"]
-margin_right = 191.0
+margin_right = 190.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="NewRule" type="Button" parent="Margin/DragSplit/Rules/Margin/Split/Scroll/List"]
-margin_right = 191.0
+margin_right = 190.0
 margin_bottom = 14.0
 custom_styles/normal = SubResource( 5 )
 shortcut_in_tooltip = false
@@ -266,6 +267,9 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="Margin/DragSplit/DragSplit/Settings/Margin/List/MatchSetting/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Margin/DragSplit/DragSplit/Settings/Margin/List/MatchSetting/Stop" to="." method="_on_Stop_pressed"]

@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 
 
 func _on_Timer_timeout():
+	$AudioStreamPlayer.play()
 	_new_rule()
 
 func _new_rule():
